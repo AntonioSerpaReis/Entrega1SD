@@ -33,6 +33,7 @@ class Player:
         # Position / movement
         self.x = spawn_x
         self.y = spawn_y
+        self.facing_dir = "front"
         self.radius = PLAYER_RADIUS
 
         # Stats (base + upgrades)
@@ -132,10 +133,18 @@ class Player:
 
         # WASD / arrow movement
         dx, dy = 0.0, 0.0
-        if keys.get("up"): dy -= 1
-        if keys.get("down"): dy += 1
-        if keys.get("left"): dx -= 1
-        if keys.get("right"): dx += 1
+        if keys.get("up"): 
+            dy -= 1
+            self.facing_dir = "up"
+        if keys.get("down"): 
+            dy += 1
+            self.facing_dir = "down"
+        if keys.get("left"): 
+            dx -= 1
+            self.facing_dir = "left"
+        if keys.get("right"): 
+            dx += 1
+            self.facing_dir = "right"
 
         if dx != 0 or dy != 0:
             length = math.sqrt(dx * dx + dy * dy)
@@ -229,7 +238,7 @@ class Player:
         return {
             "player_id":      self.player_id,
             "class_id":       self.class_id,
-            "color":          list(self.color),
+            "facing_dir":     self.facing_dir,
             "x":              round(self.x, 1),
             "y":              round(self.y, 1),
             "hp":             self.hp,

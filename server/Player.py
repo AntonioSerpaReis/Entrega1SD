@@ -79,10 +79,6 @@ class Player:
 
     # ── Helpers ───────────────────────────────────────────────────────────────
 
-    @property
-    def color(self):
-        return self.class_def["color"]
-
     def is_invulnerable(self) -> bool:
         """Returns True if the player is currently invulnerable (just after taking damage)."""
         return self.invulnerable and time.time() < self.invulnerable_until

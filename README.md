@@ -18,7 +18,7 @@ O jogo irá decorrer, eventualmente, numa arena fechada com uma câmera estátic
 
 Os jogadores podem escolher uma classe (de 7 diferentes), cada classe com uma abilidade diferente.
 
-O jogador poderá se melhorar com melhorias compradas na loja, acessada depois de completar o nível, com as moedas recebidas no final de cada nível.
+O jogador poderá se melhorar com melhorias compradas na loja, acessada depois de completar a wave, com as moedas recebidas no final de cada wave.
 
 A loja terá vários upgrades disponíveis.
 

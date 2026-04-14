@@ -48,6 +48,12 @@ servidor: Onde são processados os inputs dos clientes
 
 shared: Onde estão os protocolos e constantes necessários tanto para o servidor como para o cliente.
 
+## O que é mandado para o servidor e o cliente:
+
+Servidor: Dá broadcast continuamente do estado do jogo
+
+Cliente: Dá continuamente ao servidor os botões que foram apertados pelo cliente
+
 ## O que falta?
 
 A parte gráfica (A arena, os inimigos, as classes e as bullets) que é o que define o nome do jogo Winx:Bullet Hell.
@@ -55,3 +61,5 @@ A parte gráfica (A arena, os inimigos, as classes e as bullets) que é o que de
 Execução do jogo para fins de execução de testes.
 
 Balanceamento do jogo. O jogo é capaz de estar desbalanceado porque nós fizemos o jogo a olho. Devido à falta de execução do jogo não foi possível testar se o jogo está muito fácil ou muito díficil.
+
+__main__.py tanto do servidor como do cliente para executar (Como não implementamos a parte gráfica, achamos melhor implementar depois de aprendermos pygame para se ver o jogo a correr e fazer os testes)

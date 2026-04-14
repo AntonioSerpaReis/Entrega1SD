@@ -13,9 +13,7 @@ import math # usado para cálculos trigonométricos na direção das balas e na 
 import time # usado para controlar o tempo de recarga das habilidades, duração da loja e tempo entre as ondas
 import random # usado para spawnar inimigos em posições aleatórias e para variar o tempo de disparo e o ângulo inicial do padrão de tiro
 
-from shared.Constants import (
-    SCREEN_WIDTH, SCREEN_HEIGHT, ENEMY_COIN_REWARD,
-) # usado para definir os limites da arena e a recompensa em moedas por matar inimigos
+from shared.Constants import SCREEN_WIDTH, SCREEN_HEIGHT, ENEMY_COIN_REWARD # usado para definir os limites da arena e a recompensa em moedas por matar inimigos
 from server.Player import Player # usado para criar e atualizar os jogadores
 from server.Bullet import Bullet # usado para criar e atualizar as balas
 from server.Wave   import WaveManager # usado para gerenciar as ondas de inimigos, incluindo spawn

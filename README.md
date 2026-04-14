@@ -48,7 +48,7 @@ servidor: Onde são processados os inputs dos clientes
 
 shared: Onde estão os protocolos e constantes necessários tanto para o servidor como para o cliente.
 
-## O que é mandado para o servidor e o cliente:
+## Comunicação cliente-servidor:
 
 Servidor: Dá broadcast continuamente do estado do jogo
 

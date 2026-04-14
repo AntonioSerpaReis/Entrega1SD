@@ -20,6 +20,8 @@ Os jogadores podem escolher uma classe (de 7 diferentes), cada classe com uma ab
 
 O jogador poderá se melhorar com melhorias compradas na loja, acessada depois de completar a wave, com as moedas recebidas no final de cada wave.
 
+Mecânica de Invulnerabilidade: Quando o jogador leva com uma bullet, entra num estado de invulnerabilidade onde não leva dano por x tempo. Isto foi implementado para o jogador não receber muitas balas de uma vez e ser derrotado instantaneamente.
+
 A loja terá vários upgrades disponíveis.
 
 A pontuação será o número de waves limpas e o jogo termina caso os jogadores limpem as 10 waves ou sejam todos derrotados
@@ -40,8 +42,16 @@ MOUSE - para apontar e disparar
 
 O nosso jogo está dividido em 3 módulos:
 
-cliente: Onde é gerido os inputs do cliente e os outputs do servidor
+cliente: Onde é gerido os inputs do cliente
 
 servidor: Onde são processados os inputs dos clientes
 
-shared: Onde estão os protocolos e constantes
+shared: Onde estão os protocolos e constantes necessários tanto para o servidor como para o cliente.
+
+## O que falta?
+
+A parte gráfica (A arena, os inimigos, as classes e as bullets) que é o que define o nome do jogo Winx:Bullet Hell.
+
+Execução do jogo para fins de execução de testes.
+
+Balanceamento do jogo. O jogo é capaz de estar desbalanceado porque nós fizemos o jogo a olho. Devido à falta de execução do jogo não foi possível testar se o jogo está muito fácil ou muito díficil.

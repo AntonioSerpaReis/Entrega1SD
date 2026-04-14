@@ -6,7 +6,7 @@ import random # usado para spawnar inimigos em posições aleatórias e para var
 
 from shared.Constants import (
     ENEMIES_PER_WAVE_BASE, ENEMIES_PER_WAVE_SCALE,
-    ENEMY_BASE_HP, SCREEN_WIDTH, SCREEN_HEIGHT,
+    ENEMY_BASE_HP, SCREEN_WIDTH, SCREEN_HEIGHT
 ) # usado para definir o número de inimigos por onda, a escala de dificuldade e os limites da arena
 from server.Enemy import Enemy # usado para criar e atualizar os inimigos em cada onda
 

@@ -10,7 +10,7 @@ from shared.Constants import (
     BULLET_SPEED, PLAYER_BULLET_DAMAGE, PLAYER_RADIUS,
     UPGRADE_DAMAGE_COST, UPGRADE_HP_COST, UPGRADE_MANA_COST,
     UPGRADE_DAMAGE_AMOUNT, UPGRADE_HP_AMOUNT, UPGRADE_MANA_AMOUNT,
-    SCREEN_WIDTH, SCREEN_HEIGHT,
+    SCREEN_WIDTH, SCREEN_HEIGHT
 ) # usado para definir as características dos jogadores, os custos e benefícios das melhorias e para limitar seu movimento dentro da arena
 from shared.Classes import get_class # usado para obter as definições de classe dos jogadores, como cor e efeito de habilidade
 from server.Bullet import Bullet # usado para criar as balas disparadas pelos jogadores

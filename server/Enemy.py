@@ -12,7 +12,7 @@ import random # usado para spawnar inimigos em posições aleatórias e para var
 
 from shared.Constants import (
     ENEMY_RADIUS, ENEMY_SPEED, ENEMY_BULLET_SPEED,
-    ENEMY_BULLET_DAMAGE, SCREEN_WIDTH, SCREEN_HEIGHT,
+    ENEMY_BULLET_DAMAGE, SCREEN_WIDTH, SCREEN_HEIGHT
 ) # usado para definir as características dos inimigos e para limitar seu movimento dentro da arena
 from server.Bullet import Bullet # usado para criar as balas disparadas pelos inimigos
 

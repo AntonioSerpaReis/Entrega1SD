@@ -32,9 +32,9 @@ class Event:
         """Call the handler function with optional data."""
         if self.handler:
             if data is not None:
-                self.handler(data)  # Aqui o 'n' é passado explicitamente
+                self.handler(data) 
             else:
-                self.handler()      # Para eventos sem dados (ex: Game Over)
+                self.handler()   
 
 class GameState:
     """

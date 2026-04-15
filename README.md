@@ -18,7 +18,9 @@ O jogo irá decorrer, eventualmente, numa arena fechada com uma câmera estátic
 
 Os jogadores podem escolher uma classe (de 7 diferentes), cada classe com uma abilidade diferente.
 
-O jogador poderá se melhorar com melhorias compradas na loja, acessada depois de completar o nível, com as moedas recebidas no final de cada nível.
+O jogador poderá se melhorar com melhorias compradas na loja, acessada depois de completar a wave, com as moedas recebidas no final de cada wave.
+
+Mecânica de Invulnerabilidade: Quando o jogador leva com uma bullet, entra num estado de invulnerabilidade onde não leva dano por x tempo. Isto foi implementado para o jogador não receber muitas balas de uma vez e ser derrotado instantaneamente.
 
 A loja terá vários upgrades disponíveis.
 
@@ -40,8 +42,24 @@ MOUSE - para apontar e disparar
 
 O nosso jogo está dividido em 3 módulos:
 
-cliente: Onde é gerido os inputs do cliente e os outputs do servidor
+cliente: Onde é gerido os inputs do cliente
 
 servidor: Onde são processados os inputs dos clientes
 
-shared: Onde estão os protocolos e constantes
+shared: Onde estão os protocolos e constantes necessários tanto para o servidor como para o cliente.
+
+## Comunicação cliente-servidor:
+
+Servidor: Dá broadcast continuamente do estado do jogo
+
+Cliente: Dá continuamente ao servidor os botões que foram apertados pelo cliente
+
+## O que falta?
+
+A parte gráfica (A arena, os inimigos, as classes e as bullets) que é o que define o nome do jogo Winx:Bullet Hell.
+
+Execução do jogo para fins de execução de testes.
+
+Balanceamento do jogo. O jogo é capaz de estar desbalanceado porque nós fizemos o jogo a olho. Devido à falta de execução do jogo não foi possível testar se o jogo está muito fácil ou muito díficil.
+
+__main__.py tanto do servidor como do cliente para executar (Como não implementamos a parte gráfica, achamos melhor implementar depois de aprendermos pygame para se ver o jogo a correr e fazer os testes)

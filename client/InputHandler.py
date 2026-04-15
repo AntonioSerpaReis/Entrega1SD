@@ -22,10 +22,6 @@ class InputHandler:
         self._ability = False
         self._quit = False
 
-        # Camera offset supplied by Renderer each frame
-        self.cam_x = 0
-        self.cam_y = 0
-
     # ── Frame update ──────────────────────────────────────────────────────────
 
     def update(self, events: list) -> None:
@@ -50,10 +46,10 @@ class InputHandler:
             "dash": kb[pygame.K_LSHIFT],
         }
 
-        # Mouse world coords = screen pos + camera offset
+        # Mouse world coords = screen pos
         sx, sy = pygame.mouse.get_pos()
-        self._mouse_x = sx + self.cam_x
-        self._mouse_y = sy + self.cam_y
+        self._mouse_x = sx
+        self._mouse_y = sy
         btns = pygame.mouse.get_pressed()
         self._mouse_btn = bool(btns[0])
 

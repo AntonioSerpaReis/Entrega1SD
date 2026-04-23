@@ -16,9 +16,9 @@ from client.GameState import ClientGameState
 
 class Renderer:
     def __init__(self, gs: ClientGameState, width: int = SCREEN_WIDTH, height: int = SCREEN_HEIGHT):
-        self._width  = width
+        self._width = width
         self._height = height
-        self._gs     = gs
+        self._gs = gs
 
     def _clear_screen(self) -> None:
         os.system('cls' if os.name == 'nt' else 'clear')

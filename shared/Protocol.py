@@ -12,8 +12,8 @@ import json
 INT_SIZE = 8
 
 # Client → Server
-MSG_JOIN        = "join"         # {"type":"join","name":"Alice","class_id":2}
-MSG_INPUT       = "input"        # {"type":"input","keys":{...},"mouse":{...}}
+MSG_JOIN = "join"         # {"type":"join","name":"Alice","class_id":2}
+MSG_INPUT = "input"        # {"type":"input","keys":{...},"mouse":{...}}
 
 # Server → Client
 MSG_WELCOME = "welcome"        # {"type":"welcome","player_id":0,"state":{...}}

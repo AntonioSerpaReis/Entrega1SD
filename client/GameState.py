@@ -8,16 +8,16 @@ Event flags are set by comparing the incoming phase to the previous one.
 
 class ClientGameState:
     def __init__(self):
-        self.phase        = "LOBBY"
+        self.phase = "LOBBY"
         self.players: dict = {}
-        self.wave:    dict = {}
+        self.wave: dict = {}
         self.bullets: list = []
         self.my_player_id = None
 
         # One-shot event flags consumed by the main loop
         self.event_wave_clear = False
-        self.event_game_over  = False
-        self.event_game_win   = False
+        self.event_game_over = False
+        self.event_game_win = False
 
     def apply_state(self, state: dict) -> None:
         incoming_phase = state.get("phase", self.phase)
@@ -31,9 +31,9 @@ class ClientGameState:
             elif incoming_phase == "WIN":
                 self.event_game_win = True
 
-        self.phase   = incoming_phase
+        self.phase = incoming_phase
         self.players = state.get("players", self.players)
-        self.wave    = state.get("wave",    self.wave)
+        self.wave = state.get("wave",    self.wave)
         self.bullets = state.get("bullets", [])
 
     # ── Convenience accessors ─────────────────────────────────────────────────

@@ -12,13 +12,13 @@ from client.Receiver import Receiver
 
 class Client:
     def __init__(self, host: str, port: int, game_state: ClientGameState):
-        self.host      = host
-        self.port      = port
+        self.host = host
+        self.port = port
         self._sock: socket.socket | None = None
         self._receiver: Receiver | None  = None
         self._send_lock = threading.Lock()
-        self.gs         = game_state
-        self.error_msg  = None
+        self.gs = game_state
+        self.error_msg = None
 
     def connect(self) -> bool:
         self._sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

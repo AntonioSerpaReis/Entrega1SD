@@ -3,11 +3,8 @@ from client.Client import Client
 from client.GameState import ClientGameState
 from client.InputHandler import InputHandler
 from client.Renderer import Renderer
-from shared.Constants import SCREEN_WIDTH, SCREEN_HEIGHT, SERVER_HOST, SERVER_PORT
+from shared.Constants import SCREEN_WIDTH, SCREEN_HEIGHT, SERVER_HOST, SERVER_PORT, TICK_RATE
 from shared.Protocol import MSG_JOIN
-
-# Configuration - Change these to match your server settings
-TARGET_FPS = 20  # Terminal rendering is slow, so we keep FPS modest
 
 def main():
     # Initialize core components
@@ -56,7 +53,7 @@ def main():
 
             # Cap the Frame Rate
             elapsed = time.time() - start_time
-            sleep_time = max(0, (1.0 / TARGET_FPS) - elapsed)
+            sleep_time = max(0, (1.0 / TICK_RATE) - elapsed)
             time.sleep(sleep_time)
 
             # Check if the game ended

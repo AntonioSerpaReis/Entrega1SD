@@ -18,7 +18,6 @@ MSG_INPUT       = "input"        # {"type":"input","keys":{...},"mouse":{...}}
 # Server → Client
 MSG_WELCOME = "welcome"        # {"type":"welcome","player_id":0,"state":{...}}
 MSG_STATE = "state"          # {"type":"state","state":{...}}
-MSG_ERROR = "error"          # {"type":"error","msg":"..."}
 
 # ── Serialization helpers ─────────────────────────────────────────────────────
 

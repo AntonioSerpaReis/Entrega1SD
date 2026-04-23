@@ -7,7 +7,7 @@ import threading
 
 from shared.Protocol import (
     receive_object,
-    MSG_WELCOME, MSG_STATE, MSG_ERROR
+    MSG_WELCOME, MSG_STATE
 )
 
 
@@ -42,6 +42,3 @@ class Receiver(threading.Thread):
 
         elif mtype == MSG_STATE:
             self.gs.apply_state(msg.get("state", {}))
-
-        elif mtype == MSG_ERROR:
-            print(f"[Client] Server error: {msg.get('msg')}")

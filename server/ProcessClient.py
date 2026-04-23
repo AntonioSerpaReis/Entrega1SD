@@ -8,7 +8,7 @@ import socket
 import threading
 import json
 
-from shared.Protocol import send_object, receive_int, MSG_INPUT, MSG_JOIN, MSG_WELCOME
+from shared.Protocol import send_object, receive_object, MSG_INPUT, MSG_JOIN, MSG_WELCOME
 
 
 class ProcessClient(threading.Thread):
@@ -25,25 +25,17 @@ class ProcessClient(threading.Thread):
 
     def run(self) -> None:
         self.conn.settimeout(None)
-        while self.connected:
-            try:
-                size = receive_int(self.conn)
-                if size <= 0:
+        try:
+            while self.connected:
+                msg = receive_object(self.conn)
+                
+                if msg is None:
                     break
 
-                data = b""
-                while len(data) < size:
-                    packet = self.conn.recv(size - len(data))
-                    if not packet:
-                        break
-                    data += packet
-
-                msg = json.loads(data.decode('utf-8'))
                 self._route(msg)
 
-            except Exception as e:
-                print(f"[ProcessClient] Error: {e}")
-                break
+        except (ConnectionResetError, EOFError, json.JSONDecodeError):
+            pass
 
         self._cleanup()
 

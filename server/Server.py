@@ -20,6 +20,7 @@ class Server:
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._socket.bind(("", SERVER_PORT))
         self._socket.listen(MAX_PLAYERS)
+        self._socket.setblocking(False)
 
         self._game_state = GameState()
         self._clients = ClientList()
@@ -33,14 +34,9 @@ class Server:
         If found, it accepts them and starts their handler thread.
         """
         try:
-            # Momentarily peek at the socket
-            self._socket.settimeout(0.0) 
             conn, addr = self._socket.accept()
-            
-            print(f"[SERVER] Loop interrupted: Player joining from {addr}")
-            
-            # Reset the new connection to blocking for the ProcessClient thread
-            conn.settimeout(None)
+
+            print(f"[SERVER] Loop interrupted: Player joining from {addr}")           
             
             # Start the client handler thread
             ProcessClient(conn, addr, self._game_state, self._clients).start()

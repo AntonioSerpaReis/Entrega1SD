@@ -39,7 +39,7 @@ class InputHandler:
 
             if k == keyboard.Key.esc:
                 self._quit = True
-                return False  # stops the listener
+                return False 
 
         def on_release(key):
             try:

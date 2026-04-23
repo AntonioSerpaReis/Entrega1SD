@@ -30,5 +30,5 @@ class Broadcaster(Thread):
 
     def run(self):
         while True:
-            sleep(self.interval)
             self.broadcast_state()
+            sleep(self.interval)

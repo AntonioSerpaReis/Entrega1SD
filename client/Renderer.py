@@ -2,10 +2,10 @@
 Renderer.py — Terminal renderer for the game arena.
 
 Symbol legend:
-  .  empty space
+     empty space
   #  player
   ?  enemy
-  @  bullet
+  o  bullet
 """
 
 import os

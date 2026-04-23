@@ -46,9 +46,6 @@ def send_object(connection, obj):
 def receive_object(connection):
     """1º: lê tamanho, 2º: lê dados."""
     size = receive_int(connection)
-    data = b""
-    while len(data) < size:
-        chunk = connection.recv(size - len(data))
-        data += chunk
+    data = connection.recv(size)
     result = json.loads(data.decode('utf-8'))
     return result

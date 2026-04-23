@@ -18,7 +18,6 @@ from server.ClientList import ClientList
 class Server:
     def __init__(self):
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self._socket.bind(("", SERVER_PORT))
         self._socket.listen(MAX_PLAYERS)
 

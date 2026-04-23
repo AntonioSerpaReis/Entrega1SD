@@ -2,6 +2,7 @@
 GameState.py — Client-side mirror of the server state.
 
 Updated every time a MSG_STATE packet arrives.
+Event flags are set by comparing the incoming phase to the previous one.
 """
 
 
@@ -14,24 +15,26 @@ class ClientGameState:
         self.my_player_id = None
 
         # One-shot event flags consumed by the main loop
-        self.event_wave_start = False
         self.event_wave_clear = False
         self.event_game_over  = False
         self.event_game_win   = False
 
     def apply_state(self, state: dict) -> None:
-        self.phase   = state.get("phase",   self.phase)
+        incoming_phase = state.get("phase", self.phase)
+
+        # Set one-shot flags on phase transitions
+        if incoming_phase != self.phase:
+            if incoming_phase == "WAVE_CLEAR":
+                self.event_wave_clear = True
+            elif incoming_phase == "GAMEOVER":
+                self.event_game_over = True
+            elif incoming_phase == "WIN":
+                self.event_game_win = True
+
+        self.phase   = incoming_phase
         self.players = state.get("players", self.players)
         self.wave    = state.get("wave",    self.wave)
         self.bullets = state.get("bullets", [])
-
-    def apply_bullet_events(self, spawn: list, remove: list) -> None:
-        existing = {b["id"]: b for b in self.bullets}
-        for b in spawn:
-            existing[b["id"]] = b
-        for bid in remove:
-            existing.pop(bid, None)
-        self.bullets = list(existing.values())
 
     # ── Convenience accessors ─────────────────────────────────────────────────
 

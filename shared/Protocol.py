@@ -18,11 +18,6 @@ MSG_INPUT       = "input"        # {"type":"input","keys":{...},"mouse":{...}}
 # Server → Client
 MSG_WELCOME = "welcome"        # {"type":"welcome","player_id":0,"state":{...}}
 MSG_STATE = "state"          # {"type":"state","state":{...}}
-MSG_BULLET_EVENTS = "bullet_events"  # {"type":"bullet_events","spawn":[...],"remove":[...]}
-MSG_WAVE_START = "wave_start"     # {"type":"wave_start","wave":2}
-MSG_WAVE_CLEAR = "wave_clear"     # {"type":"wave_clear","wave":2}
-MSG_GAME_OVER = "game_over"      # {"type":"game_over"}
-MSG_GAME_WIN = "game_win"       # {"type":"game_win"}
 MSG_ERROR = "error"          # {"type":"error","msg":"..."}
 
 # ── Serialization helpers ─────────────────────────────────────────────────────

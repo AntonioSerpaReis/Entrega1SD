@@ -1,5 +1,9 @@
 """
 GameState.py — Authoritative server-side game state.
+
+Phase lifecycle:
+  LOBBY -> PLAYING -> WAVE_CLEAR -> PLAYING -> ... -> WIN
+                   -> GAMEOVER
 """
 
 import time
@@ -12,25 +16,6 @@ from server.dados.Bullet import Bullet
 from server.dados.Wave import WaveManager
 
 
-class Event:
-    """Simple single-handler event bus."""
-
-    def __init__(self, name: str):
-        self.name = name
-        self.handler = None
-
-    def connect(self, func):
-        print(f"[EVENT] Server: {self.name}")
-        self.handler = func
-
-    def emit(self, data=None):
-        if self.handler:
-            if data is not None:
-                self.handler(data)
-            else:
-                self.handler()
-
-
 class GameState:
     def __init__(self):
         self.players: dict[str, Player] = {}
@@ -39,11 +24,6 @@ class GameState:
 
         self.running = False
         self.phase = "LOBBY"
-
-        self.on_wave_start = Event("Wave Start")
-        self.on_wave_clear = Event("Wave Clear")
-        self.on_game_over = Event("Game Over")
-        self.on_game_win = Event("Game Win")
 
         self.lock = threading.Lock()
 
@@ -62,9 +42,6 @@ class GameState:
     def update(self, dt: float) -> None:
         now = time.time()
 
-        emit_game_over  = False
-        emit_wave_clear = False
-
         with self.lock:
             if not self.players:
                 return
@@ -74,7 +51,6 @@ class GameState:
             # Auto-start first wave when players are present
             if self.wave_mgr.state == "WAITING" and self.wave_mgr.wave_number == 0:
                 self.wave_mgr.start_next_wave()
-                self.on_wave_start.emit(self.wave_mgr.wave_number)
 
             new_bullets = []
 
@@ -108,29 +84,28 @@ class GameState:
 
             self.bullets = [b for b in self.bullets if b.alive]
 
-            if self.wave_mgr.all_dead():
-                self.wave_mgr.mark_clearing()
-                emit_wave_clear = True
-                if self.wave_mgr.is_final_wave():
-                    self.phase = "WIN"
-
+            # Phase transitions
             if self.players and all(not p.alive for p in self.players.values()):
                 self.phase = "GAMEOVER"
-                emit_game_over = True
 
-        # Emit events outside the lock to avoid deadlocks
-        if emit_wave_clear:
-            self.on_wave_clear.emit(self.wave_mgr.wave_number)
-            if self.phase == "WIN":
-                self.on_game_win.emit()
+            elif self.wave_mgr.all_dead():
+                self.wave_mgr.mark_clearing()
+                if self.wave_mgr.is_final_wave():
+                    self.phase = "WIN"
+                else:
+                    self.wave_mgr.start_next_wave()
+                    self.phase = "WAVE_CLEAR"
 
-        if emit_game_over:
-            self.on_game_over.emit()
+            elif self.phase == "WAVE_CLEAR":
+                self.phase = "PLAYING"
+
+            else:
+                self.phase = "PLAYING"
 
     def to_dict(self) -> dict:
         return {
-            "phase": self.phase,
+            "phase":   self.phase,
             "players": {str(pid): p.to_dict() for pid, p in self.players.items()},
-            "bullets": [b.to_dict() for b in self.bullets], 
-            "wave": self.wave_mgr.to_dict(),
+            "bullets": [b.to_dict() for b in self.bullets],
+            "wave":    self.wave_mgr.to_dict(),
         }

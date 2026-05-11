@@ -5,7 +5,7 @@ Client.py — TCP connection wrapper and send helper.
 import socket
 import threading
 
-from shared.Protocol import send_object
+from client import send_object
 from client.GameState import ClientGameState
 from client.Receiver import Receiver
 

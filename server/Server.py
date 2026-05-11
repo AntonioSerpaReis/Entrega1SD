@@ -8,7 +8,7 @@ on the main thread.
 import socket
 import time
 
-from shared.Constants import SERVER_PORT, MAX_PLAYERS, TICK_RATE
+from server import SERVER_PORT, MAX_PLAYERS, TICK_RATE
 from server.GameState import GameState
 from server.ProcessClient import ProcessClient
 from server.Broadcaster import Broadcaster

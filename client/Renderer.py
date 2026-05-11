@@ -10,7 +10,7 @@ Symbol legend:
 
 import os
 
-from shared.Constants import SCREEN_HEIGHT, SCREEN_WIDTH, ENEMY, PLAYER, BULLET, ARENA_SPACE
+from client import SCREEN_HEIGHT, SCREEN_WIDTH, ENEMY, PLAYER, BULLET, ARENA_SPACE
 from client.GameState import ClientGameState
 
 

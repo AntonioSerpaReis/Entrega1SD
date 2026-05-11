@@ -7,7 +7,7 @@ ESC   → quit
 """
 
 from pynput import keyboard
-from shared.Protocol import MSG_INPUT
+from client import MSG_INPUT
 
 
 class InputHandler:

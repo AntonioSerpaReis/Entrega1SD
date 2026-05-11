@@ -9,7 +9,7 @@ States:
 
 import random
 
-from shared.Constants import ENEMIES_PER_WAVE_BASE, ENEMIES_PER_WAVE_SCALE, SCREEN_WIDTH, SCREEN_HEIGHT
+from server import ENEMIES_PER_WAVE_BASE, ENEMIES_PER_WAVE_SCALE, SCREEN_WIDTH, SCREEN_HEIGHT
 from server.dados.Enemy import Enemy
 
 

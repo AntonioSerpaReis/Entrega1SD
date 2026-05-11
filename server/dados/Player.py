@@ -2,7 +2,7 @@
 Player.py — Server-side player model.
 """
 
-from shared.Constants import BULLET_SPEED, SCREEN_WIDTH, SCREEN_HEIGHT
+from server import BULLET_SPEED, SCREEN_WIDTH, SCREEN_HEIGHT
 from server.dados.Bullet import Bullet
 
 

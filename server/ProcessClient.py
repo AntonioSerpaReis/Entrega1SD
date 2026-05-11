@@ -8,7 +8,7 @@ import socket
 import threading
 import json
 
-from shared.Protocol import send_object, receive_object, MSG_INPUT, MSG_JOIN, MSG_WELCOME
+from server import send_object, receive_object, MSG_INPUT, MSG_JOIN, MSG_WELCOME
 
 
 class ProcessClient(threading.Thread):

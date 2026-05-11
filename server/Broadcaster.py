@@ -6,7 +6,7 @@ Called directly by the game loop each tick. No threads, no queues.
 
 from threading import Lock, Thread
 from time import sleep
-from shared.Protocol import send_object, MSG_STATE
+from server import send_object, MSG_STATE
 
 
 class Broadcaster(Thread):

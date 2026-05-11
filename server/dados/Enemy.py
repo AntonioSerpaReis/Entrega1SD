@@ -7,7 +7,7 @@ Behaviour: wanders randomly toward successive random targets; dies in one hit.
 import uuid
 import random
 
-from shared.Constants import ENEMY_SPEED, SCREEN_WIDTH, SCREEN_HEIGHT
+from server import ENEMY_SPEED, SCREEN_WIDTH, SCREEN_HEIGHT
 
 
 class Enemy:

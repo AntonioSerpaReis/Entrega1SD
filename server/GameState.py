@@ -10,7 +10,7 @@ import time
 import random
 import threading
 
-from shared.Constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from server import SCREEN_WIDTH, SCREEN_HEIGHT
 from server.dados.Player import Player
 from server.dados.Bullet import Bullet
 from server.dados.Wave import WaveManager

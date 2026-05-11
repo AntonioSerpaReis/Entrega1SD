@@ -3,8 +3,8 @@ from client.Client import Client
 from client.GameState import ClientGameState
 from client.InputHandler import InputHandler
 from client.Renderer import Renderer
-from shared.Constants import SCREEN_WIDTH, SCREEN_HEIGHT, SERVER_HOST, SERVER_PORT, TICK_RATE
-from shared.Protocol import MSG_JOIN
+from client import SCREEN_WIDTH, SCREEN_HEIGHT, SERVER_HOST, SERVER_PORT, TICK_RATE
+from client import MSG_JOIN
 
 def main():
     # Initialize core components

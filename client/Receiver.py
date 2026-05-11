@@ -3,11 +3,11 @@ Receiver.py — Background thread that reads and dispatches server messages.
 """
 
 import socket
-import threading
+from threading import Thread
 
 from client import receive_object, MSG_WELCOME, MSG_STATE
 
-class Receiver(threading.Thread):
+class Receiver(Thread):
     def __init__(self, sock: socket.socket, game_state):
         super().__init__(daemon=True)
         self._sock = sock

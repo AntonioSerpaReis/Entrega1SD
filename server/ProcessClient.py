@@ -5,13 +5,13 @@ Owns the blocking recv() loop and routes incoming messages to GameState.
 """
 
 import socket
-import threading
+from threading import Thread
 import json
 
 from server import send_object, receive_object, MSG_INPUT, MSG_JOIN, MSG_WELCOME
 
 
-class ProcessClient(threading.Thread):
+class ProcessClient(Thread):
     def __init__(self, conn: socket.socket, addr: tuple, game_state, client_list):
         super().__init__(daemon=True)
         self.conn = conn

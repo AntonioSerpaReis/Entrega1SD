@@ -4,21 +4,21 @@ Enemy.py — Server-side enemy model.
 Behaviour: wanders randomly toward successive random targets; dies in one hit.
 """
 
-import uuid
-import random
+from uuid import uuid4
+from random import randint
 
 from server import ENEMY_SPEED, SCREEN_WIDTH, SCREEN_HEIGHT
 
 
 class Enemy:
     def __init__(self, x: float, y: float, wave: int):
-        self.id    = str(uuid.uuid4())[:8]
+        self.id    = str(uuid4())[:8]
         self.x     = x
         self.y     = y
         self.alive = True
 
-        self.target_x = random.randint(0, SCREEN_WIDTH  - 1)
-        self.target_y = random.randint(0, SCREEN_HEIGHT - 1)
+        self.target_x = randint(0, SCREEN_WIDTH  - 1)
+        self.target_y = randint(0, SCREEN_HEIGHT - 1)
 
         self.speed = ENEMY_SPEED + wave  # scales with wave number
 
@@ -34,8 +34,8 @@ class Enemy:
 
         if abs(dx) < 0.2 and abs(dy) < 0.2:
             # Reached target — pick a new one
-            self.target_x = random.randint(0, SCREEN_WIDTH  - 1)
-            self.target_y = random.randint(0, SCREEN_HEIGHT - 1)
+            self.target_x = randint(0, SCREEN_WIDTH  - 1)
+            self.target_y = randint(0, SCREEN_HEIGHT - 1)
             return
 
         if abs(dx) > 0.1:

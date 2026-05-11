@@ -6,9 +6,9 @@ Phase lifecycle:
                    -> GAMEOVER
 """
 
-import time
-import random
-import threading
+from time import time
+from random import randint
+from threading import Lock
 
 from server import SCREEN_WIDTH, SCREEN_HEIGHT
 from server.dados.Player import Player
@@ -25,12 +25,12 @@ class GameState:
         self.running = False
         self.phase = "LOBBY"
 
-        self.lock = threading.Lock()
+        self.lock = Lock()
 
     def add_player(self, player_id: str) -> Player:
         with self.lock:
-            spawn_x = SCREEN_WIDTH  / 2 + random.randint(-10, 10)
-            spawn_y = SCREEN_HEIGHT / 2 + random.randint(-5, 5)
+            spawn_x = SCREEN_WIDTH  / 2 + randint(-10, 10)
+            spawn_y = SCREEN_HEIGHT / 2 + randint(-5, 5)
             p = Player(player_id, spawn_x, spawn_y)
             self.players[player_id] = p
             return p
@@ -40,7 +40,7 @@ class GameState:
             self.players.pop(player_id, None)
 
     def update(self, dt: float) -> None:
-        now = time.time()
+        now = time()
 
         with self.lock:
             if not self.players:

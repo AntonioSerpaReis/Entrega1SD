@@ -2,13 +2,13 @@
 ClientList.py — Thread-safe registry of active ProcessClient connections.
 """
 
-import threading
+from threading import Lock
 
 
 class ClientList:
     def __init__(self):
         self._clients: dict = {}
-        self._lock = threading.Lock()
+        self._lock = Lock()
 
     def add(self, player_id, pc) -> None:
         with self._lock:
@@ -23,7 +23,7 @@ class ClientList:
         with self._lock:
             return list(self._clients.values())
 
-    def get_lock(self) -> threading.Lock:
+    def get_lock(self) -> Lock:
         return self._lock
 
     def get_dict(self) -> dict:

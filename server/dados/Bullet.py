@@ -2,14 +2,14 @@
 Bullet.py — Server-side bullet model.
 """
 
-import uuid
+from uuid import uuid4
 
 
 class Bullet:
     """A single bullet travelling in a fixed direction."""
 
     def __init__(self, x: float, y: float, vx: float, vy: float, lifetime: float = 4.0):
-        self.id = str(uuid.uuid4())[:8]
+        self.id = str(uuid4())[:8]
         self.x = x
         self.y = y
         self.vx = vx        # horizontal velocity (units/second)

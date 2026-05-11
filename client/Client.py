@@ -1,9 +1,8 @@
-"""
-Client.py — TCP connection wrapper and send helper.
+"""Client module for the game. This module defines the Client class, which is responsible for managing the connection to the server, sending messages, and receiving updates from the server. It also includes the Receiver class, which runs in a separate thread to handle incoming messages from the server
 """
 
 import socket
-import threading
+from threading import Lock
 
 from client import send_object
 from client.GameState import ClientGameState
@@ -16,7 +15,7 @@ class Client:
         self.port = port
         self._sock: socket.socket | None = None
         self._receiver: Receiver | None  = None
-        self._send_lock = threading.Lock()
+        self._send_lock = Lock()
         self.gs = game_state
         self.error_msg = None
 

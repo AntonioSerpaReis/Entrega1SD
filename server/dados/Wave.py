@@ -7,7 +7,7 @@ States:
   CLEARING — wave just ended, waiting for next wave trigger
 """
 
-import random
+from random import randint, choice
 
 from server import ENEMIES_PER_WAVE_BASE, ENEMIES_PER_WAVE_SCALE, SCREEN_WIDTH, SCREEN_HEIGHT
 from server.dados.Enemy import Enemy
@@ -58,15 +58,15 @@ class WaveManager:
         sides = ["top", "bottom", "left", "right"]
 
         for _ in range(count):
-            side = random.choice(sides)
+            side = choice(sides)
             if side == "top":
-                x, y = random.randint(margin, SCREEN_WIDTH - margin), margin
+                x, y = randint(margin, SCREEN_WIDTH - margin), margin
             elif side == "bottom":
-                x, y = random.randint(margin, SCREEN_WIDTH - margin), SCREEN_HEIGHT - margin
+                x, y = randint(margin, SCREEN_WIDTH - margin), SCREEN_HEIGHT - margin
             elif side == "left":
-                x, y = margin, random.randint(margin, SCREEN_HEIGHT - margin)
+                x, y = margin, randint(margin, SCREEN_HEIGHT - margin)
             elif side == "right": 
-                x, y = SCREEN_WIDTH - margin, random.randint(margin, SCREEN_HEIGHT - margin)
+                x, y = SCREEN_WIDTH - margin, randint(margin, SCREEN_HEIGHT - margin)
             enemies.append(Enemy(x, y, self.wave_number))
 
         return enemies

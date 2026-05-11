@@ -1,14 +1,14 @@
-import time
+"""Interface module for the game. This module defines the Interface class, which is responsible for managing the main game loop, handling user input, and coordinating the different components of the client."""
+
+from time import time, sleep
 from client.Client import Client
 from client.GameState import ClientGameState
 from client.InputHandler import InputHandler
 from client.Renderer import Renderer
-from client import SCREEN_WIDTH, SCREEN_HEIGHT, SERVER_HOST, SERVER_PORT, TICK_RATE
-from client import MSG_JOIN
+from client import SCREEN_WIDTH, SCREEN_HEIGHT, SERVER_HOST, SERVER_PORT, TICK_RATE, MSG_JOIN
 
 class Interface:
     def __init__(self):
-        # Initialize core components
         self.game_state = ClientGameState()
         self.client = Client(SERVER_HOST, SERVER_PORT, self.game_state)
         self.input_handler = InputHandler()
@@ -22,13 +22,14 @@ class Interface:
             print("Failed to connect.")
             return
 
+        # Start the receiver thread to listen for server messages
         self.client.start_recv_thread()
         self.client.send({"type": MSG_JOIN})
         print("Connected! Waiting for game data...")
 
         try:
             while not self.input_handler.quit:
-                start_time = time.time()
+                start_time = time()
 
                 # Handle Input & Network
                 input_msg = self.input_handler.build_input_msg()
@@ -54,15 +55,16 @@ class Interface:
                     print("Waiting for player initialization from server...")
 
                 # Cap the Frame Rate
-                elapsed = time.time() - start_time
+                elapsed = time() - start_time
                 sleep_time = max(0, (1.0 / TICK_RATE) - elapsed)
-                time.sleep(sleep_time)
+                sleep(sleep_time)
 
                 # Check if the game ended
                 if self.game_state.event_game_over:
                     print("Game Over!")
                     break
 
+                # Check if the player won
                 if self.game_state.event_game_win:
                     print("You Win!")
                     break

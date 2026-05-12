@@ -36,11 +36,6 @@ class Client:
     def disconnect(self) -> None:
         if self._receiver:
             self._receiver.stop()
-        if self._sock:
-            try:
-                self._sock.shutdown(socket.SHUT_RDWR)
-            except OSError:
-                pass
             self._sock.close()
 
     @property

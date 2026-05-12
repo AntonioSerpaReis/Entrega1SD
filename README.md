@@ -249,7 +249,7 @@ O projeto é dividido em dois componentes principais: **Cliente** (responsável 
 - **Comunicação:** socket (TCP/IP)
 - **Geração de IDs:** Módulo uuid
 - **Concorrência:** Multi-threading (módulo `threading`)
-- **Física:** random (movimentação/inserção dos inimigos e inserção dos players), time (para atualizar o estado do jogo)
+- **Física:** `random` (movimentação/inserção dos inimigos e inserção dos players), `time` (para atualizar o estado do jogo)
 - **Serialização:** JSON
 
 ---

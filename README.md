@@ -132,7 +132,7 @@ O projeto é dividido em dois componentes principais: **Cliente** (responsável 
     - `_clear_screen()`: Limpa o ecrã de visualização.
     - `render()`: Desenha a arena, jogadores, balas e UI com base no `GameState`.
 
-## ⚙️ Servidor (Server-Side)
+## Servidor (Server-Side)
 
 ### `Server`
 **Descrição:** Ponto de entrada do servidor e orquestrador de rede.

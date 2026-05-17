@@ -1,43 +1,52 @@
 """
-Renderer.py — Terminal renderer for the game arena.
-
-Symbol legend:
-     empty space
-  #  player
-  ?  enemy
-  o  bullet
+Renderer.py — Pygame 2D graphical renderer for the game arena.
 """
 
-import os
-
-from client import SCREEN_HEIGHT, SCREEN_WIDTH, ENEMY, PLAYER, BULLET, ARENA_SPACE
+import sys
+import pygame
+from random import choice
+from client.assets.arena_colors import ARENA_BG
+from client import SCREEN_HEIGHT, SCREEN_WIDTH
 from client.GameState import ClientGameState
 
+classes = ["client/assets/aisha.png",
+           "client/assets/bloom.png",
+           "client/assets/stella.png",
+           "client/assets/flora.png",
+           "client/assets/musa.png",
+           "client/assets/tecna.png",]
 
 class Renderer:
     def __init__(self, gs: ClientGameState, width: int = SCREEN_WIDTH, height: int = SCREEN_HEIGHT):
+        pygame.init()
         self._width = width
         self._height = height
         self._gs = gs
+        self.scale = 20
+        
+        self.screen = pygame.display.set_mode((self._width * self.scale, self._height * self.scale))
+        pygame.display.set_caption("Multiplayer Arena")
 
-    def _clear_screen(self) -> None:
-        os.system('cls' if os.name == 'nt' else 'clear')
+        try:
+            self._player_img = pygame.image.load(choice(classes)).convert_alpha()
+            self._enemy_img = pygame.image.load("client/assets/enemy.png").convert_alpha()
+            self._bullet_img = pygame.image.load("client/assets/bullet.png").convert_alpha()
+        except FileNotFoundError as e:
+            print(f"Asset loading error: {e}")
+            print("Please ensure player.png, enemy.png, and bullet.png are inside the 'assets' folder.")
+            pygame.quit()
+            sys.exit()
 
     def render(self, enemies: list, bullets: list, players: list) -> None:
-        self._clear_screen()
-
-        grid = [[ARENA_SPACE] * self._width for _ in range(self._height)]
+        self.screen.fill(ARENA_BG)
 
         for ex, ey in enemies:
-            if 0 <= int(ex) < self._width and 0 <= int(ey) < self._height:
-                grid[int(ey)][int(ex)] = ENEMY
+            self.screen.blit(self._enemy_img, (int(ex * self.scale), int(ey * self.scale)))
 
         for bx, by in bullets:
-            if 0 <= int(bx) < self._width and 0 <= int(by) < self._height:
-                grid[int(by)][int(bx)] = BULLET
+            self.screen.blit(self._bullet_img, (int(bx * self.scale), int(by * self.scale)))
 
         for px, py in players:
-            if 0 <= int(px) < self._width and 0 <= int(py) < self._height:
-                grid[int(py)][int(px)] = PLAYER
+            self.screen.blit(self._player_img, (int(px * self.scale), int(py * self.scale)))
 
-        print("\n".join("".join(row) for row in grid))
+        pygame.display.flip()

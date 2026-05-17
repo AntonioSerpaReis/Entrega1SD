@@ -7,7 +7,7 @@ MAX_PLAYERS = 7
 
 # Tamanho da arena/janela de jogo
 SCREEN_WIDTH = 80
-SCREEN_HEIGHT = 20
+SCREEN_HEIGHT = 40
 
 # Constantes de jogo
 TICK_RATE = 5

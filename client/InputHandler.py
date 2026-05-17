@@ -1,12 +1,11 @@
 """
-InputHandler.py — Non-blocking keyboard listener using pynput.
+InputHandler.py — Pygame keyboard event listener.
 
 WASD  → movement
 Arrows → shooting direction
-ESC   → quit
 """
 
-from pynput import keyboard
+import pygame
 from client import MSG_INPUT
 
 
@@ -19,50 +18,36 @@ class InputHandler:
         }
         self._quit = False
 
-        keys = self._keys
-
-        def on_press(key):
-            try:
-                k = key.char.lower() if key.char else None
-            except AttributeError:
-                k = key
-
-            if k == 'w': keys["up"]    = True
-            if k == 's': keys["down"]  = True
-            if k == 'a': keys["left"]  = True
-            if k == 'd': keys["right"] = True
-
-            if k == keyboard.Key.up:    keys["attack_up"]    = True
-            elif k == keyboard.Key.down:  keys["attack_down"]  = True
-            elif k == keyboard.Key.left:  keys["attack_left"]  = True
-            elif k == keyboard.Key.right: keys["attack_right"] = True
-
-            if k == keyboard.Key.esc:
-                self._quit = True
-                return False 
-
-        def on_release(key):
-            try:
-                k = key.char.lower() if key.char else None
-            except AttributeError:
-                k = key
-
-            if k == 'w': keys["up"]    = False
-            if k == 's': keys["down"]  = False
-            if k == 'a': keys["left"]  = False
-            if k == 'd': keys["right"] = False
-
-            if k == keyboard.Key.up:    keys["attack_up"]    = False
-            elif k == keyboard.Key.down:  keys["attack_down"]  = False
-            elif k == keyboard.Key.left:  keys["attack_left"]  = False
-            elif k == keyboard.Key.right: keys["attack_right"] = False
-
-        self.listener = keyboard.Listener(on_press=on_press, on_release=on_release)
-        self.listener.start()
-
     @property
     def quit(self) -> bool:
         return self._quit
+
+    def handle_events(self) -> None:
+        """Processes Pygame events. Call this inside your main game loop."""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self._quit = True
+                
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:     self._quit = True
+                elif event.key == pygame.K_w:        self._keys["up"] = True
+                elif event.key == pygame.K_s:        self._keys["down"] = True
+                elif event.key == pygame.K_a:        self._keys["left"] = True
+                elif event.key == pygame.K_d:        self._keys["right"] = True
+                elif event.key == pygame.K_UP:       self._keys["attack_up"] = True
+                elif event.key == pygame.K_DOWN:     self._keys["attack_down"] = True
+                elif event.key == pygame.K_LEFT:     self._keys["attack_left"] = True
+                elif event.key == pygame.K_RIGHT:    self._keys["attack_right"] = True
+
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_w:          self._keys["up"] = False
+                elif event.key == pygame.K_s:        self._keys["down"] = False
+                elif event.key == pygame.K_a:        self._keys["left"] = False
+                elif event.key == pygame.K_d:        self._keys["right"] = False
+                elif event.key == pygame.K_UP:       self._keys["attack_up"] = False
+                elif event.key == pygame.K_DOWN:     self._keys["attack_down"] = False
+                elif event.key == pygame.K_LEFT:     self._keys["attack_left"] = False
+                elif event.key == pygame.K_RIGHT:    self._keys["attack_right"] = False
 
     def build_input_msg(self) -> dict:
         return {"type": MSG_INPUT, "keys": dict(self._keys)}

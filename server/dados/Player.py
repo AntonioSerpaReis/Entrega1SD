@@ -2,7 +2,7 @@
 Player.py — Server-side player model.
 """
 
-from server import BULLET_SPEED, SCREEN_WIDTH, SCREEN_HEIGHT
+from server import BULLET_SPEED, SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_SPEED
 from server.dados.Bullet import Bullet
 
 
@@ -15,7 +15,7 @@ class Player:
         self.player_id = player_id
         self.x = spawn_x
         self.y = spawn_y
-        self.speed = 5
+        self.speed = PLAYER_SPEED
         self.alive = True
 
         self.fire_cd_end = 0.0

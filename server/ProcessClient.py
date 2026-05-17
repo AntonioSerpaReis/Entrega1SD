@@ -8,18 +8,18 @@ import socket
 from threading import Thread
 import json
 
-from server import send_object, receive_object, MSG_INPUT, MSG_JOIN, MSG_WELCOME
+from server import ClientList, GameState, send_object, receive_object, MSG_INPUT, MSG_JOIN, MSG_WELCOME
 
 
 class ProcessClient(Thread):
-    def __init__(self, conn: socket.socket, addr: tuple, game_state, client_list):
+    def __init__(self, conn: socket.socket, addr: tuple, game_state: GameState, client_list: ClientList):
         super().__init__(daemon=True)
-        self.conn = conn
-        self.addr = addr
-        self.player_id = None
-        self.game_state = game_state
-        self.clients = client_list
-        self.connected = True
+        self.conn: socket.socket = conn
+        self.addr: tuple = addr
+        self.player_id: str = None
+        self.game_state: GameState = game_state
+        self.clients: ClientList = client_list
+        self.connected: bool = True
 
     # ── Thread loop ───────────────────────────────────────────────────────────
 

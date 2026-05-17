@@ -6,16 +6,16 @@ Called directly by the game loop each tick. No threads, no queues.
 
 from threading import Lock, Thread
 from time import sleep
-from server import send_object, MSG_STATE
+from server import ClientList, GameState, send_object, MSG_STATE
 
 
 class Broadcaster(Thread):
-    def __init__(self, client_list, game_state, interval):
+    def __init__(self, client_list: ClientList, game_state: GameState, interval: float):
         super().__init__(daemon=True)
-        self.client_list = client_list
-        self.game_state = game_state
-        self.interval = interval
-        self._send_lock = Lock()
+        self.client_list: ClientList = client_list
+        self.game_state: GameState = game_state
+        self.interval: float = interval
+        self._send_lock: Lock = Lock()
 
     def broadcast_state(self) -> None:
         msg = {"type": MSG_STATE, "state": self.game_state.to_dict()}

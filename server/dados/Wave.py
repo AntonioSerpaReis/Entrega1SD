@@ -17,9 +17,9 @@ class WaveManager:
     TOTAL_WAVES = 10
 
     def __init__(self):
-        self.wave_number = 0
+        self.wave_number: int = 0
         self.enemies: list[Enemy] = []
-        self.state = "WAITING"
+        self.state: str = "WAITING"
 
     def start_next_wave(self) -> None:
         self.wave_number += 1

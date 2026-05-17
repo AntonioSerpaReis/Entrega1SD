@@ -8,7 +8,7 @@ from threading import Lock
 class ClientList:
     def __init__(self):
         self._clients: dict = {}
-        self._lock = Lock()
+        self._lock: Lock = Lock()
 
     def add(self, player_id, pc) -> None:
         with self._lock:

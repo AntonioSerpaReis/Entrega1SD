@@ -20,12 +20,12 @@ class GameState:
     def __init__(self):
         self.players: dict[str, Player] = {}
         self.bullets: list[Bullet] = []
-        self.wave_mgr = WaveManager()
+        self.wave_mgr: WaveManager = WaveManager()
 
-        self.running = False
-        self.phase = "LOBBY"
+        self.running: bool = False
+        self.phase: str = "LOBBY"
 
-        self.lock = Lock()
+        self.lock: Lock = Lock()
 
     def add_player(self, player_id: str) -> Player:
         with self.lock:
@@ -66,21 +66,19 @@ class GameState:
 
             # Enemy → player collision
             for e in self.wave_mgr.enemies:
-                if not e.alive:
-                    continue
-                for p in self.players.values():
-                    if p.alive and int(e.x) == int(p.x) and int(e.y) == int(p.y):
-                        p.alive = False
+                if e.alive:
+                    for p in self.players.values():
+                        if p.alive and e.overlaps(p.x, p.y):
+                            p.alive = False
 
             # Bullet → enemy collision
             for b in self.bullets:
                 for e in self.wave_mgr.enemies:
-                    if not e.alive:
-                        continue
-                    if b.overlaps(e.x, e.y):
-                        e.take_damage()
-                        b.alive = False
-                        break
+                    if e.alive:
+                        if b.overlaps(e.x, e.y):
+                            e.take_damage()
+                            b.alive = False
+                            break
 
             self.bullets = [b for b in self.bullets if b.alive]
 

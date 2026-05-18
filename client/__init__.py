@@ -12,12 +12,6 @@ SCREEN_HEIGHT = 40
 # Frame rate
 TICK_RATE = 5
 
-# Renderização
-ARENA_SPACE = " "
-BULLET = "o"
-PLAYER = "#"
-ENEMY = "?"
-
 # Protocolos
 MSG_JOIN = "join"
 MSG_INPUT = "input"

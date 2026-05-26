@@ -46,13 +46,7 @@ class Server:
             start_tick = time()
             dt = start_tick - last_time
             last_time = start_tick
-
-            # THE BREAK: Check for new players right now
             self._interrupt_for_clients()
-
-            # THE GAME: Run logic update
             self._game_state.update(dt)
-
-            # THE TIMING: Wait for next tick
             elapsed = time() - start_tick
             sleep(max(0, tick_interval - elapsed))

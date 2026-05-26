@@ -12,7 +12,6 @@ class Server:
         self._socket.bind(("", SERVER_PORT))
         self._socket.listen(MAX_PLAYERS)
         self._socket.setblocking(False)
-
         self._game_state = GameState()
         self._clients = ClientList()
         self._broadcaster = Broadcaster(self._clients, self._game_state, 1/TICK_RATE)

@@ -1,9 +1,3 @@
-"""
-Broadcaster.py — Sends the current game state to all connected clients.
-
-Called directly by the game loop each tick. No threads, no queues.
-"""
-
 from threading import Lock, Thread
 from time import sleep
 from server import ClientList, GameState, send_object, MSG_STATE

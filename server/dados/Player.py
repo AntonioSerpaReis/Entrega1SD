@@ -7,9 +7,7 @@ from server.dados.Bullet import Bullet
 
 
 class Player:
-    """Authoritative server-side player. All velocities in units/second."""
-
-    FIRE_RATE = 0.18  # minimum seconds between shots
+    FIRE_RATE = 0.18  
 
     def __init__(self, player_id: str, spawn_x: float, spawn_y: float):
         self.player_id = player_id
@@ -22,7 +20,6 @@ class Player:
         self.last_vx = 1.0
         self.last_vy = 0.0
 
-        # Populated before the first tick so the initial update never KeyErrors
         self.latest_input = {
             "up": False, "down": False, "left": False, "right": False,
             "attack_up": False, "attack_down": False,

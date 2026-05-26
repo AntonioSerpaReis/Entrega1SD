@@ -1,6 +1,3 @@
-"""Client module for the game. This module defines the Client class, which is responsible for managing the connection to the server, sending messages, and receiving updates from the server. It also includes the Receiver class, which runs in a separate thread to handle incoming messages from the server
-"""
-
 import socket
 from threading import Lock
 

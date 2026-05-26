@@ -1,7 +1,5 @@
 """
 Enemy.py — Server-side enemy model.
-
-Behaviour: wanders randomly toward successive random targets; dies in one hit.
 """
 
 from uuid import uuid4
@@ -17,10 +15,8 @@ class Enemy:
         self.y: int     = y
         self.radius: int = 1        # for collision purposes
         self.alive: bool = True
-
         self.target_x: int = randint(0, SCREEN_WIDTH  - 1)
         self.target_y: int = randint(0, SCREEN_HEIGHT - 1)
-
         self.speed: int = ENEMY_SPEED + wave  # scales with wave number
 
     def update(self, dt: float) -> None:
@@ -32,12 +28,10 @@ class Enemy:
     def _move_randomly(self, dt: float) -> None:
         dx: int = self.target_x - self.x
         dy: int = self.target_y - self.y
-
         if abs(dx) < 0.2 and abs(dy) < 0.2:
             self.target_x = randint(0, SCREEN_WIDTH  - 1)
             self.target_y = randint(0, SCREEN_HEIGHT - 1)
             return
-
         if abs(dx) > 0.1:
             self.x += int((1 if dx > 0 else -1) * self.speed * dt)
         elif abs(dy) > 0.1:

@@ -1,11 +1,3 @@
-"""
-GameState.py — Client-side mirror of the server state.
-
-Updated every time a MSG_STATE packet arrives.
-Event flags are set by comparing the incoming phase to the previous one.
-"""
-
-
 class ClientGameState:
     def __init__(self):
         self.phase = "LOBBY"

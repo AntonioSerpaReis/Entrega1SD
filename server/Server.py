@@ -1,13 +1,5 @@
-"""
-Server.py — Entry point for the game server.
-
-Starts the accept loop in a background thread and runs the game loop
-on the main thread.
-"""
-
 import socket
 from time import time, sleep
-
 from server import SERVER_PORT, MAX_PLAYERS, TICK_RATE
 from server.GameState import GameState
 from server.ProcessClient import ProcessClient
@@ -28,10 +20,6 @@ class Server:
         self._running = False
 
     def _interrupt_for_clients(self) -> None:
-        """
-        Breaks the game loop flow to check if a client is waiting.
-        If found, it accepts them and starts their handler thread.
-        """
         try:
             conn, addr = self._socket.accept()
 

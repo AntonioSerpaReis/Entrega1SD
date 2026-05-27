@@ -1,7 +1,3 @@
-"""
-Receiver.py — Background thread that reads and dispatches server messages.
-"""
-
 import socket
 from threading import Thread
 
@@ -12,12 +8,13 @@ class Receiver(Thread):
         super().__init__(daemon=True)
         self._sock = sock
         self.gs = game_state
+        self.running = True
 
-    def stop(self) -> None:
-        pass  # socket closure from Client.disconnect() will unblock recv
+    def stop(self):
+        self.running = False
 
     def run(self) -> None:
-        while True:
+        while self.running:
             try:
                 msg = receive_object(self._sock)
                 if msg is None:

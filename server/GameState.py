@@ -1,11 +1,3 @@
-"""
-GameState.py — Authoritative server-side game state.
-
-Phase lifecycle:
-  LOBBY -> PLAYING -> WAVE_CLEAR -> PLAYING -> ... -> WIN
-                   -> GAMEOVER
-"""
-
 from time import time
 from random import randint
 from threading import Lock

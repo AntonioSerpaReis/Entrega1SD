@@ -1,7 +1,3 @@
-"""
-ClientList.py — Thread-safe registry of active ProcessClient connections.
-"""
-
 from threading import Lock
 
 
@@ -19,7 +15,6 @@ class ClientList:
             self._clients.pop(player_id, None)
 
     def get_all(self) -> list:
-        """Return a snapshot of current clients to avoid race conditions."""
         with self._lock:
             return list(self._clients.values())
 

@@ -1,7 +1,3 @@
-"""
-__main__.py — Ponto de entrada do Servidor.
-"""
-
 from server.Server import Server
 
 def main():

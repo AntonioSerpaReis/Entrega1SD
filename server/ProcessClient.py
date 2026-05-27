@@ -1,9 +1,3 @@
-"""
-ProcessClient.py — Dedicated thread for one connected client.
-
-Owns the blocking recv() loop and routes incoming messages to GameState.
-"""
-
 import socket
 from threading import Thread
 import json

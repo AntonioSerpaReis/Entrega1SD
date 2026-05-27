@@ -1,10 +1,3 @@
-"""
-InputHandler.py — Pygame keyboard event listener.
-
-WASD  → movement
-Arrows → shooting direction
-"""
-
 import pygame
 from client import MSG_INPUT
 

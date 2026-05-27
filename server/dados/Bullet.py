@@ -6,8 +6,6 @@ from uuid import uuid4
 from server import BULLET_LIFETIME
 
 class Bullet:
-    """A single bullet travelling in a fixed direction."""
-
     def __init__(self, x: float, y: float, vx: float, vy: float, lifetime: float = BULLET_LIFETIME) -> None:
         self.id: str = str(uuid4())[:8]
         self.x: int = x
@@ -19,7 +17,6 @@ class Bullet:
         self.alive: bool = True
 
     def update(self, dt: float, arena_w: int, arena_h: int) -> None:
-        """Advance position; despawn on lifetime expiry or out-of-bounds."""
         if not self.alive:
             return
 

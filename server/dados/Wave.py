@@ -52,7 +52,6 @@ class WaveManager:
         return [e for e in self.enemies if e.alive]
 
     def _spawn_enemies(self, count: int) -> list[Enemy]:
-        """Spawn enemies along the arena border, away from the centre."""
         enemies = []
         margin = 3
         sides = ["top", "bottom", "left", "right"]

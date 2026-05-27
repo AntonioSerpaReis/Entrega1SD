@@ -1,7 +1,3 @@
-"""
-Renderer.py — Pygame 2D graphical renderer for the game arena.
-"""
-
 import sys
 import pygame
 from random import choice
@@ -23,7 +19,6 @@ class Renderer:
         self._height = height
         self._gs = gs
         self.scale = 20
-        
         self.screen = pygame.display.set_mode((self._width * self.scale, self._height * self.scale))
         pygame.display.set_caption("Multiplayer Arena")
 

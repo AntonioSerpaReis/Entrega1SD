@@ -6,7 +6,7 @@ SERVER_PORT = 5555
 MAX_PLAYERS = 7
 
 # Tamanho da arena/janela de jogo
-SCREEN_WIDTH = 80
+SCREEN_WIDTH = 40
 SCREEN_HEIGHT = 40
 
 # Frame rate
